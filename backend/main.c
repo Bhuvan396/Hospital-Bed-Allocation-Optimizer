@@ -40,7 +40,6 @@ int main() {
     while(!heap_empty(&emergency)) {
         Patient p = heap_extract_max(&emergency);
         int required_type = p.severity;
-
         Bed* bed = find_free_bed(beds, bed_count, required_type);
 
         if(bed) {
