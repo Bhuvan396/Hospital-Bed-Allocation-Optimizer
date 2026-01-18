@@ -1,7 +1,7 @@
 #ifndef BED_H
 #define BED_H
 
-#define MAX_BEDS 195   // 100 + 50 + 30 + 10 + 5
+#define MAX_BEDS 42
 
 typedef enum {
     GENERAL = 1,

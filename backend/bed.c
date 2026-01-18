@@ -5,19 +5,19 @@ void init_beds(Bed beds[], int *count) {
     int id = 1;
     int i = 0;
 
-    for(int j = 0; j < 100; j++)
+    for(int j = 0; j < 20; j++)
         beds[i++] = (Bed){id++, GENERAL, 0, 0};
 
-    for(int j = 0; j < 50; j++)
+    for(int j = 0; j < 10; j++)
         beds[i++] = (Bed){id++, SEMI_PRIVATE, 0, 0};
 
-    for(int j = 0; j < 30; j++)
+    for(int j = 0; j < 6; j++)
         beds[i++] = (Bed){id++, PRIVATE, 0, 0};
 
-    for(int j = 0; j < 10; j++)
+    for(int j = 0; j < 4; j++)
         beds[i++] = (Bed){id++, ICU, 0, 0};
 
-    for(int j = 0; j < 5; j++)
+    for(int j = 0; j < 2; j++)
         beds[i++] = (Bed){id++, VENTILATOR, 0, 0};
 
     *count = i;

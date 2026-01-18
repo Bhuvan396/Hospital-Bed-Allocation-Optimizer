@@ -1,3 +1,5 @@
 hospital
-*.exe
 *.o
+frontend/public/beds.json
+backend/data/beds.json
+*.exe
