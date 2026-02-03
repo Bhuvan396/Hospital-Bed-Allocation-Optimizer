@@ -33,8 +33,10 @@ function App() {
   }, {});
 
   const totalBeds = beds.length;
-  const occupiedBeds = beds.filter((b) => b.occupied).length;
-  const freeBeds = totalBeds - occupiedBeds;
+  // State 0 = Free, 1 = Occupied, 2 = Discharge Approved
+  const occupiedBeds = beds.filter((b) => b.state === 1).length;
+  const dischargeBeds = beds.filter((b) => b.state === 2).length;
+  const freeBeds = beds.filter((b) => b.state === 0).length;
 
   if (loading) {
     return <h3 style={{ textAlign: "center" }}>Loading hospital status…</h3>;
@@ -65,18 +67,23 @@ function App() {
           <h3>Occupied</h3>
           <p>{occupiedBeds}</p>
         </div>
+        <div className="card discharge" style={{ borderColor: '#ffcc80' }}>
+          <h3>Discharge Pending</h3>
+          <p>{dischargeBeds}</p>
+        </div>
       </div>
 
       {/* Legend */}
       <div className="legend">
         <span className="legend-item free">🟢 Available</span>
         <span className="legend-item occupied">🔴 Occupied</span>
+        <span className="legend-item discharge">🟠 Discharge Approved</span>
       </div>
 
       {/* Bed Sections */}
       {Object.keys(BED_TYPES).map((type) => {
         const list = groupedBeds[type] || [];
-        const occ = list.filter((b) => b.occupied).length;
+        const occ = list.filter((b) => b.state !== 0).length;
 
         return (
           <section key={type} className="section">
@@ -88,10 +95,9 @@ function App() {
               {list.map((bed) => (
                 <div
                   key={bed.id}
-                  className={`bed ${bed.occupied ? "occupied" : "free"}`}
-                  title={`Bed ${bed.id} | ${
-                    bed.occupied ? "Occupied" : "Available"
-                  }`}
+                  className={`bed ${bed.state === 0 ? "free" : bed.state === 1 ? "occupied" : "discharge"}`}
+                  title={`Bed ${bed.id} | ${bed.state === 0 ? "Available" : bed.state === 1 ? "Occupied" : "Discharge Approved"
+                    } ${bed.patient_id ? "(Patient " + bed.patient_id + ")" : ""}`}
                 >
                   {bed.id}
                 </div>

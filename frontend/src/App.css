@@ -119,6 +119,11 @@ body {
   color: #000;
 }
 
+.discharge {
+  background-color: #ffcc80; /* Orange */
+  color: #000;
+}
+
 /* Footer */
 .footer {
   margin-top: 40px;
